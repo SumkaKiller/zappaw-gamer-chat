@@ -1,5 +1,6 @@
 import { Mic, Headphones, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export const UserSidebar = () => {
   return (
@@ -19,13 +20,28 @@ export const UserSidebar = () => {
             <div className="text-sm font-medium text-primary">You</div>
             <div className="text-xs text-muted-foreground">#1337</div>
           </div>
-          <Button size="icon" variant="ghost" className="text-muted-foreground hover:text-primary">
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            className="text-muted-foreground hover:text-primary"
+            onClick={() => toast.info("Microphone settings coming soon!")}
+          >
             <Mic className="w-4 h-4" />
           </Button>
-          <Button size="icon" variant="ghost" className="text-muted-foreground hover:text-primary">
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            className="text-muted-foreground hover:text-primary"
+            onClick={() => toast.info("Audio settings coming soon!")}
+          >
             <Headphones className="w-4 h-4" />
           </Button>
-          <Button size="icon" variant="ghost" className="text-muted-foreground hover:text-primary">
+          <Button 
+            size="icon" 
+            variant="ghost" 
+            className="text-muted-foreground hover:text-primary"
+            onClick={() => toast.info("User settings coming soon!")}
+          >
             <Settings className="w-4 h-4" />
           </Button>
         </div>
