@@ -18,31 +18,31 @@ export const ChatArea = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-secondary/30">
-      <div className="h-14 border-b border-primary/20 flex items-center px-4">
-        <span className="text-primary font-semibold"># general</span>
+    <div className="flex-1 flex flex-col bg-black/95">
+      <div className="h-14 border-b border-primary/10 flex items-center px-6">
+        <span className="text-primary font-semibold tracking-wide"># general</span>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        <div className="flex items-start gap-4">
-          <img src="/starpaw-logo.png" alt="User" className="w-10 h-10 rounded-full" />
+      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex items-start gap-4 hover:bg-primary/5 p-2 rounded-lg transition-colors">
+          <img src="/starpaw-logo.png" alt="User" className="w-10 h-10 rounded-full border border-primary/20" />
           <div>
             <div className="flex items-center gap-2">
               <span className="font-semibold text-primary">StarPaw</span>
               <span className="text-xs text-muted-foreground">Today at 12:00</span>
             </div>
-            <p className="text-foreground">Welcome to ZapPaw! 🎮✨</p>
+            <p className="text-foreground mt-1">Welcome to ZapPaw! 🎮✨</p>
           </div>
         </div>
       </div>
       
-      <div className="p-4">
-        <div className="flex gap-2">
+      <div className="p-6 bg-black/90">
+        <div className="flex gap-3">
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Message #general"
-            className="bg-muted border-primary/20"
+            className="bg-secondary/50 border-primary/10 focus:border-primary/30 transition-colors"
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
@@ -52,7 +52,7 @@ export const ChatArea = () => {
           />
           <Button 
             size="icon" 
-            className="bg-primary text-primary-foreground hover:bg-primary/90"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20"
             onClick={handleSendMessage}
           >
             <Send className="w-4 h-4" />

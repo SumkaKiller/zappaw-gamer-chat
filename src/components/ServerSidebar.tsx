@@ -8,28 +8,32 @@ export const ServerSidebar = () => {
   };
 
   return (
-    <div className="w-20 bg-secondary border-r border-primary/20 flex flex-col items-center py-4 gap-4">
+    <div className="w-20 bg-black border-r border-primary/10 flex flex-col items-center py-4 gap-4">
       <Button 
         variant="ghost" 
-        className="rounded-full w-12 h-12 bg-primary/10 hover:bg-primary/20"
+        className="rounded-full w-12 h-12 bg-primary/10 hover:bg-primary/20 transition-all duration-200 group"
         onClick={() => toast.success("Home selected!")}
       >
-        <Home className="w-6 h-6 text-primary" />
+        <Home className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
       </Button>
-      <div className="w-full h-px bg-primary/20" />
+      <div className="w-10 h-px bg-primary/10" />
       <Button 
         variant="ghost" 
-        className="rounded-full w-12 h-12 bg-muted hover:bg-primary/20"
+        className="rounded-full w-12 h-12 bg-black hover:bg-primary/10 transition-all duration-200 p-0 overflow-hidden group"
         onClick={() => toast.success("ZapPaw server selected!")}
       >
-        <img src="/starpaw-logo.png" alt="Server" className="w-full h-full rounded-full" />
+        <img 
+          src="/starpaw-logo.png" 
+          alt="Server" 
+          className="w-full h-full rounded-full group-hover:scale-110 transition-transform" 
+        />
       </Button>
       <Button 
         variant="ghost" 
-        className="rounded-full w-12 h-12 bg-muted hover:bg-primary/20"
+        className="rounded-full w-12 h-12 bg-black hover:bg-primary/10 transition-all duration-200 group"
         onClick={handleAddServer}
       >
-        <Plus className="w-6 h-6 text-primary" />
+        <Plus className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
       </Button>
     </div>
   );

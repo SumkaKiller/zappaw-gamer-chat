@@ -5,7 +5,7 @@ import { UserSidebar } from "@/components/UserSidebar";
 
 const Chat = () => {
   return (
-    <div className="h-screen flex bg-secondary">
+    <div className="h-screen flex bg-black">
       <ServerSidebar />
       <ChannelSidebar />
       <ChatArea />
