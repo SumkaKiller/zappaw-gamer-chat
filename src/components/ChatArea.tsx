@@ -36,7 +36,7 @@ export const ChatArea = ({ friend }) => {
         {/* Messages will appear here */}
       </div>
       
-      <div className="p-6 bg-black/90 border-t border-primary/5">
+      <div className="mt-auto p-6 bg-black/90 border-t border-primary/5">
         <div className="flex gap-2 max-w-5xl mx-auto">
           <Input
             value={message}
