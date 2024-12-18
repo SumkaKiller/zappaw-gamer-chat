@@ -4,7 +4,7 @@ import { UserPlus, User, Settings, Headphones, Mic } from "lucide-react";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { useNavigate } from "react-router-dom";
+import { ChatArea } from "@/components/ChatArea";
 import {
   Dialog,
   DialogContent,
@@ -23,7 +23,6 @@ interface Friend {
 }
 
 const Friends = () => {
-  const navigate = useNavigate();
   const [friends] = useState<Friend[]>([
     {
       id: 1,
@@ -40,6 +39,7 @@ const Friends = () => {
   ]);
   const [friendUsername, setFriendUsername] = useState("");
   const [isAddFriendOpen, setIsAddFriendOpen] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
 
   const handleAddFriend = () => {
     if (!friendUsername.trim()) {
@@ -47,14 +47,13 @@ const Friends = () => {
       return;
     }
     
-    // Here you would typically make an API call to add the friend
     toast.success(`Friend request sent to ${friendUsername}!`);
     setFriendUsername("");
     setIsAddFriendOpen(false);
   };
 
-  const handleUserClick = (friendId: number) => {
-    navigate("/chat", { state: { friendId } });
+  const handleUserClick = (friend: Friend) => {
+    setSelectedFriend(friend);
   };
 
   return (
@@ -105,7 +104,7 @@ const Friends = () => {
           {friends.map((friend) => (
             <div
               key={friend.id}
-              onClick={() => handleUserClick(friend.id)}
+              onClick={() => handleUserClick(friend)}
               className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 cursor-pointer transition-all group"
             >
               <Avatar className="w-8 h-8 border border-primary/10 group-hover:border-primary/20 transition-all">
@@ -164,18 +163,24 @@ const Friends = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center p-6 bg-black/98">
-        <div className="text-center space-y-4">
-          <div className="inline-block p-6 rounded-full bg-primary/5 animate-pulse">
-            <User className="w-12 h-12 text-primary/40" />
+      <div className="flex-1">
+        {selectedFriend ? (
+          <ChatArea />
+        ) : (
+          <div className="flex items-center justify-center h-full p-6 bg-black/98">
+            <div className="text-center space-y-4">
+              <div className="inline-block p-6 rounded-full bg-primary/5 animate-pulse">
+                <User className="w-12 h-12 text-primary/40" />
+              </div>
+              <h2 className="text-2xl font-medium text-primary/80 tracking-wide">
+                Не кто не хочет общяться с ЗвездоЛапам
+              </h2>
+              <p className="text-muted-foreground">
+                Add some friends to start chatting!
+              </p>
+            </div>
           </div>
-          <h2 className="text-2xl font-medium text-primary/80 tracking-wide">
-            Не кто не хочет общяться с ЗвездоЛапам
-          </h2>
-          <p className="text-muted-foreground">
-            Add some friends to start chatting!
-          </p>
-        </div>
+        )}
       </div>
     </div>
   );
