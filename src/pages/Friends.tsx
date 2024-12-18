@@ -2,9 +2,18 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { UserPlus, User, Settings, Headphones, Mic } from "lucide-react";
 import { toast } from "sonner";
-import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { useNavigate } from "react-router-dom";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 interface Friend {
   id: number;
@@ -14,6 +23,7 @@ interface Friend {
 }
 
 const Friends = () => {
+  const navigate = useNavigate();
   const [friends] = useState<Friend[]>([
     {
       id: 1,
@@ -28,9 +38,23 @@ const Friends = () => {
       avatar: "/placeholder.svg"
     }
   ]);
+  const [friendUsername, setFriendUsername] = useState("");
+  const [isAddFriendOpen, setIsAddFriendOpen] = useState(false);
 
   const handleAddFriend = () => {
-    toast.success("Friend request feature coming soon!");
+    if (!friendUsername.trim()) {
+      toast.error("Please enter a username");
+      return;
+    }
+    
+    // Here you would typically make an API call to add the friend
+    toast.success(`Friend request sent to ${friendUsername}!`);
+    setFriendUsername("");
+    setIsAddFriendOpen(false);
+  };
+
+  const handleUserClick = (friendId: number) => {
+    navigate("/chat", { state: { friendId } });
   };
 
   return (
@@ -40,14 +64,38 @@ const Friends = () => {
         {/* Header */}
         <div className="p-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-primary">Friends</h2>
-          <Button 
-            size="sm"
-            onClick={handleAddFriend}
-            className="gap-2 animate-glow"
-          >
-            <UserPlus className="w-4 h-4" />
-            Add
-          </Button>
+          <Dialog open={isAddFriendOpen} onOpenChange={setIsAddFriendOpen}>
+            <DialogTrigger asChild>
+              <Button 
+                size="sm"
+                className="gap-2 animate-glow"
+              >
+                <UserPlus className="w-4 h-4" />
+                Add
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Add Friend</DialogTitle>
+                <DialogDescription>
+                  Enter your friend's username to send them a friend request.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex items-center space-x-2">
+                <div className="grid flex-1 gap-2">
+                  <Input
+                    value={friendUsername}
+                    onChange={(e) => setFriendUsername(e.target.value)}
+                    placeholder="Enter username..."
+                    className="bg-secondary/30 border-primary/5 focus:border-primary/20 transition-all"
+                  />
+                </div>
+                <Button onClick={handleAddFriend} className="px-3">
+                  Send Request
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
         
         <Separator className="bg-primary/5" />
@@ -57,6 +105,7 @@ const Friends = () => {
           {friends.map((friend) => (
             <div
               key={friend.id}
+              onClick={() => handleUserClick(friend.id)}
               className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 cursor-pointer transition-all group"
             >
               <Avatar className="w-8 h-8 border border-primary/10 group-hover:border-primary/20 transition-all">
