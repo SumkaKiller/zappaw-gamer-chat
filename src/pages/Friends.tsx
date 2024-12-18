@@ -165,7 +165,7 @@ const Friends = () => {
       {/* Main Content */}
       <div className="flex-1">
         {selectedFriend ? (
-          <ChatArea />
+          <ChatArea friend={selectedFriend} />
         ) : (
           <div className="flex items-center justify-center h-full p-6 bg-black/98">
             <div className="text-center space-y-4">
