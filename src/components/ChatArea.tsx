@@ -18,7 +18,7 @@ export const ChatArea = ({ friend }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-black/98">
+    <div className="flex-1 flex flex-col h-full bg-black/98">
       <div className="h-14 border-b border-primary/5 flex items-center px-6 backdrop-blur-sm bg-black/40">
         <div className="flex items-center gap-2">
           <img 
@@ -36,7 +36,7 @@ export const ChatArea = ({ friend }) => {
         {/* Messages will appear here */}
       </div>
       
-      <div className="mt-auto p-6 bg-black/90 border-t border-primary/5">
+      <div className="fixed bottom-0 left-64 right-64 p-6 bg-black/90 border-t border-primary/5">
         <div className="flex gap-2 max-w-5xl mx-auto">
           <Input
             value={message}
