@@ -39,8 +39,8 @@ export const ChatArea = ({ friend }) => {
         {/* Messages will appear here */}
       </div>
       
-      <div className="fixed bottom-0 left-[240px] right-60 p-6 bg-gradient-to-r from-black/95 to-black/90 border-t border-primary/10 backdrop-blur-sm animate-fade-in">
-        <div className="flex gap-2">
+      <div className="fixed bottom-0 inset-x-[240px] p-6 bg-gradient-to-r from-black/95 to-black/90 border-t border-primary/10 backdrop-blur-sm animate-fade-in">
+        <div className="flex gap-2 w-full max-w-[calc(100vw-480px)] mx-auto">
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
