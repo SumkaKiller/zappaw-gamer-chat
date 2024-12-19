@@ -36,13 +36,13 @@ export const ChatArea = ({ friend }) => {
         {/* Messages will appear here */}
       </div>
       
-      <div className="fixed bottom-0 left-64 right-64 p-6 bg-black/90 border-t border-primary/5">
-        <div className="flex gap-2 max-w-5xl mx-auto">
+      <div className="fixed bottom-0 left-[240px] right-60 p-6 bg-gradient-to-r from-black/95 to-black/90 border-t border-primary/10">
+        <div className="flex gap-2">
           <Input
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder={`Message ${friend?.name || "..."}`}
-            className="bg-secondary/30 border-primary/5 focus:border-primary/20 transition-all placeholder:text-muted-foreground/50"
+            className="bg-black/50 border-primary/10 focus:border-primary/20 transition-all placeholder:text-muted-foreground/50 text-primary/90"
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
                 e.preventDefault();
