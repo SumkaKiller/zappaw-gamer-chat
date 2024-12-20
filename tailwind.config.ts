@@ -25,28 +25,28 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#39FF14",
-          foreground: "#000000",
+          DEFAULT: "#D6BCFA",
+          foreground: "#1A1F2C",
         },
         secondary: {
-          DEFAULT: "#0A0A0A",
-          foreground: "#ffffff",
+          DEFAULT: "#F1F0FB",
+          foreground: "#1A1F2C",
         },
         destructive: {
-          DEFAULT: "#ff0000",
-          foreground: "#ffffff",
+          DEFAULT: "#FFDEE2",
+          foreground: "#1A1F2C",
         },
         muted: {
-          DEFAULT: "#111111",
-          foreground: "#888888",
+          DEFAULT: "#F1F0FB",
+          foreground: "#6E59A5",
         },
         accent: {
-          DEFAULT: "#00FF00",
-          foreground: "#000000",
+          DEFAULT: "#E5DEFF",
+          foreground: "#1A1F2C",
         },
         card: {
-          DEFAULT: "#0A0A0A",
-          foreground: "#ffffff",
+          DEFAULT: "#F1F0FB",
+          foreground: "#1A1F2C",
         },
       },
       borderRadius: {
@@ -67,11 +67,21 @@ export default {
           "0%, 100%": { filter: "brightness(100%)" },
           "50%": { filter: "brightness(150%)" },
         },
+        pulse: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         glow: "glow 2s ease-in-out infinite",
+        pulse: "pulse 2s ease-in-out infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
       },
     },
   },
