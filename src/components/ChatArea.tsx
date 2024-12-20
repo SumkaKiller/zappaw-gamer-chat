@@ -24,35 +24,35 @@ export const ChatArea = ({ friend }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gradient-to-br from-secondary/50 to-secondary">
-      <div className="h-14 border-b border-primary/20 flex items-center px-6 backdrop-blur-sm bg-secondary/40 animate-fade-in">
+    <div className="flex-1 flex flex-col h-full bg-[#333333]">
+      <div className="h-14 border-b border-[#444444] flex items-center px-6 bg-[#2A2A2A]">
         <div className="flex items-center gap-3">
           <div className="relative group cursor-pointer">
             <img 
               src={friend?.avatar || "/placeholder.svg"} 
               alt={friend?.name} 
-              className="w-8 h-8 rounded-full border-2 border-primary/30 transition-all duration-300 group-hover:border-primary group-hover:animate-pulse"
+              className="w-8 h-8 rounded-full border-2 border-[#444444] transition-all duration-300 group-hover:border-[#555555] group-hover:animate-pulse"
             />
-            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-white animate-pulse" />
+            <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-[#2A2A2A] animate-pulse" />
           </div>
-          <span className="text-foreground font-medium tracking-wide text-sm transition-colors duration-200 hover:text-primary cursor-pointer">
+          <span className="text-gray-200 font-medium tracking-wide text-sm transition-colors duration-200 hover:text-gray-100 cursor-pointer">
             {friend?.name || "Чат"}
           </span>
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40 transition-colors">
+      <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-[#444444] scrollbar-track-transparent hover:scrollbar-thumb-[#555555] transition-colors">
         {/* Messages will appear here */}
       </div>
       
-      <div className="fixed bottom-0 inset-x-[240px] p-6 bg-gradient-to-r from-secondary/95 to-secondary/90 border-t border-primary/20 backdrop-blur-sm animate-fade-in">
-        <div className="flex gap-2 w-full max-w-[calc(100vw-480px)] mx-auto">
+      <div className="relative p-6 bg-[#2A2A2A] border-t border-[#444444]">
+        <div className="flex gap-2 w-full max-w-[calc(100%-2rem)] mx-auto">
           <div className="flex-1 relative">
             <Input
               value={message}
               onChange={handleTyping}
               placeholder={`Написать ${friend?.name || "..."}`}
-              className="bg-white/50 border-primary/20 focus:border-primary/40 transition-all placeholder:text-muted-foreground/50 text-foreground hover:bg-white/70 focus:bg-white/90 pr-24"
+              className="bg-[#222222] border-[#444444] focus:border-[#555555] transition-all placeholder:text-gray-500 text-gray-200 hover:bg-[#282828] focus:bg-[#2D2D2D] pr-24"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();
@@ -64,7 +64,7 @@ export const ChatArea = ({ friend }) => {
               <Button
                 size="icon"
                 variant="ghost"
-                className="w-8 h-8 hover:bg-primary/20 text-muted-foreground/70 hover:text-primary transition-all"
+                className="w-8 h-8 hover:bg-[#333333] text-gray-400 hover:text-gray-200 transition-all"
                 onClick={() => toast.info("Скоро будет доступно!")}
               >
                 <Smile className="w-4 h-4" />
@@ -72,7 +72,7 @@ export const ChatArea = ({ friend }) => {
               <Button
                 size="icon"
                 variant="ghost"
-                className="w-8 h-8 hover:bg-primary/20 text-muted-foreground/70 hover:text-primary transition-all"
+                className="w-8 h-8 hover:bg-[#333333] text-gray-400 hover:text-gray-200 transition-all"
                 onClick={() => toast.info("Скоро будет доступно!")}
               >
                 <Image className="w-4 h-4" />
@@ -80,7 +80,7 @@ export const ChatArea = ({ friend }) => {
               <Button
                 size="icon"
                 variant="ghost"
-                className="w-8 h-8 hover:bg-primary/20 text-muted-foreground/70 hover:text-primary transition-all"
+                className="w-8 h-8 hover:bg-[#333333] text-gray-400 hover:text-gray-200 transition-all"
                 onClick={() => toast.info("Скоро будет доступно!")}
               >
                 <Paperclip className="w-4 h-4" />
@@ -89,7 +89,7 @@ export const ChatArea = ({ friend }) => {
           </div>
           <Button 
             size="icon"
-            className={`bg-primary/20 text-primary hover:bg-primary/30 transition-all shadow-lg shadow-primary/5 hover:shadow-primary/10 ${
+            className={`bg-[#222222] text-gray-200 hover:bg-[#1A1A1A] transition-all shadow-lg shadow-black/5 hover:shadow-black/10 ${
               isTyping ? 'animate-pulse' : ''
             }`}
             onClick={handleSendMessage}
