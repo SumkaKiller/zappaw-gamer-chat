@@ -43,41 +43,40 @@ const Friends = () => {
 
   const handleAddFriend = () => {
     if (!friendUsername.trim()) {
-      toast.error("Please enter a username");
+      toast.error("Пожалуйста, введите имя пользователя");
       return;
     }
     
-    toast.success(`Friend request sent to ${friendUsername}!`);
+    toast.success(`Запрос в друзья отправлен пользователю ${friendUsername}!`);
     setFriendUsername("");
     setIsAddFriendOpen(false);
   };
 
   const handleUserClick = (friend: Friend) => {
     setSelectedFriend(friend);
+    toast.info(`Открыт чат с ${friend.name}`);
   };
 
   return (
     <div className="flex h-screen bg-background">
-      {/* Left Sidebar */}
-      <div className="w-64 bg-black/95 flex flex-col border-r border-primary/5">
-        {/* Header */}
-        <div className="p-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-primary">Friends</h2>
+      <div className="w-64 bg-secondary flex flex-col border-r border-primary/10">
+        <div className="p-4 flex items-center justify-between bg-primary/5">
+          <h2 className="text-lg font-semibold text-foreground/90">Друзья</h2>
           <Dialog open={isAddFriendOpen} onOpenChange={setIsAddFriendOpen}>
             <DialogTrigger asChild>
               <Button 
                 size="sm"
-                className="gap-2 animate-glow"
+                className="gap-2 hover-scale hover-glow bg-primary/80 hover:bg-primary"
               >
                 <UserPlus className="w-4 h-4" />
-                Add
+                Добавить
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-md bg-secondary border-primary/20">
               <DialogHeader>
-                <DialogTitle>Add Friend</DialogTitle>
+                <DialogTitle>Добавить друга</DialogTitle>
                 <DialogDescription>
-                  Enter your friend's username to send them a friend request.
+                  Введите имя пользователя, чтобы отправить запрос в друзья.
                 </DialogDescription>
               </DialogHeader>
               <div className="flex items-center space-x-2">
@@ -85,76 +84,81 @@ const Friends = () => {
                   <Input
                     value={friendUsername}
                     onChange={(e) => setFriendUsername(e.target.value)}
-                    placeholder="Enter username..."
-                    className="bg-secondary/30 border-primary/5 focus:border-primary/20 transition-all"
+                    placeholder="Введите имя пользователя..."
+                    className="bg-primary/20 border-primary/10 focus:border-primary/30 transition-all"
                   />
                 </div>
-                <Button onClick={handleAddFriend} className="px-3">
-                  Send Request
+                <Button 
+                  onClick={handleAddFriend} 
+                  className="px-3 hover-scale bg-primary/80 hover:bg-primary"
+                >
+                  Отправить
                 </Button>
               </div>
             </DialogContent>
           </Dialog>
         </div>
         
-        <Separator className="bg-primary/5" />
+        <Separator className="bg-primary/10" />
         
-        {/* Friends List */}
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
           {friends.map((friend) => (
             <div
               key={friend.id}
               onClick={() => handleUserClick(friend)}
-              className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/5 cursor-pointer transition-all group"
+              className="flex items-center gap-2 p-2 rounded-lg hover:bg-primary/10 cursor-pointer transition-all duration-200 hover-slide group animate-fadeIn"
             >
-              <Avatar className="w-8 h-8 border border-primary/10 group-hover:border-primary/20 transition-all">
-                <AvatarImage src={friend.avatar} />
+              <Avatar className="w-8 h-8 border border-primary/20 group-hover:border-primary/40 transition-all duration-200">
+                <AvatarImage src={friend.avatar} className="hover-glow" />
                 <AvatarFallback>
                   <User className="w-4 h-4" />
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-primary/90 truncate">{friend.name}</p>
-                <p className="text-xs text-muted-foreground truncate">{friend.status}</p>
+                <p className="text-sm font-medium text-foreground/90 truncate group-hover:text-foreground transition-colors">
+                  {friend.name}
+                </p>
+                <p className="text-xs text-muted-foreground truncate group-hover:text-muted-foreground/80">
+                  {friend.status}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* User Info */}
-        <div className="p-3 bg-black/98 border-t border-primary/5">
-          <div className="flex items-center gap-2 p-2 rounded-lg bg-black/40">
-            <Avatar className="w-8 h-8 border border-primary/10">
-              <AvatarImage src="/starpaw-logo.png" />
+        <div className="p-3 bg-primary/5 border-t border-primary/10">
+          <div className="flex items-center gap-2 p-2 rounded-lg bg-secondary/80 hover-scale">
+            <Avatar className="w-8 h-8 border border-primary/20">
+              <AvatarImage src="/starpaw-logo.png" className="hover-glow" />
               <AvatarFallback>
                 <User className="w-4 h-4" />
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-primary/90 truncate">You</p>
+              <p className="text-sm font-medium text-foreground/90 truncate">Вы</p>
               <p className="text-xs text-muted-foreground truncate">#1337</p>
             </div>
             <Button 
               size="icon" 
               variant="ghost" 
-              className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-              onClick={() => toast.info("Microphone settings coming soon!")}
+              className="text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all hover-scale"
+              onClick={() => toast.info("Настройки микрофона скоро будут доступны!")}
             >
               <Mic className="w-4 h-4" />
             </Button>
             <Button 
               size="icon" 
               variant="ghost" 
-              className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-              onClick={() => toast.info("Audio settings coming soon!")}
+              className="text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all hover-scale"
+              onClick={() => toast.info("Настройки звука скоро будут доступны!")}
             >
               <Headphones className="w-4 h-4" />
             </Button>
             <Button 
               size="icon" 
               variant="ghost" 
-              className="text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-              onClick={() => toast.info("User settings coming soon!")}
+              className="text-muted-foreground hover:text-foreground hover:bg-primary/20 transition-all hover-scale"
+              onClick={() => toast.info("Настройки пользователя скоро будут доступны!")}
             >
               <Settings className="w-4 h-4" />
             </Button>
@@ -162,21 +166,20 @@ const Friends = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1">
         {selectedFriend ? (
           <ChatArea friend={selectedFriend} />
         ) : (
-          <div className="flex items-center justify-center h-full p-6 bg-black/98">
+          <div className="flex items-center justify-center h-full p-6 bg-secondary">
             <div className="text-center space-y-4">
-              <div className="inline-block p-6 rounded-full bg-primary/5 animate-pulse">
+              <div className="inline-block p-6 rounded-full bg-primary/10 animate-pulse">
                 <User className="w-12 h-12 text-primary/40" />
               </div>
-              <h2 className="text-2xl font-medium text-primary/80 tracking-wide">
-                Не кто не хочет общяться с ЗвездоЛапам
+              <h2 className="text-2xl font-medium text-foreground/80 tracking-wide animate-fadeIn">
+                Не кто не хочет общаться с ЗвездоЛапом
               </h2>
-              <p className="text-muted-foreground">
-                Add some friends to start chatting!
+              <p className="text-muted-foreground animate-slideIn">
+                Добавьте друзей, чтобы начать общение!
               </p>
             </div>
           </div>

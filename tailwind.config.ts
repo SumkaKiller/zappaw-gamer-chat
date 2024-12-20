@@ -25,27 +25,27 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#404040",
+          DEFAULT: "#333333",
           foreground: "#E0E0E0",
         },
         secondary: {
-          DEFAULT: "#333333",
+          DEFAULT: "#2A2A2A",
           foreground: "#E0E0E0",
         },
         destructive: {
-          DEFAULT: "#4A4A4A",
+          DEFAULT: "#404040",
           foreground: "#E0E0E0",
         },
         muted: {
-          DEFAULT: "#333333",
+          DEFAULT: "#2D2D2D",
           foreground: "#999999",
         },
         accent: {
-          DEFAULT: "#3D3D3D",
+          DEFAULT: "#383838",
           foreground: "#E0E0E0",
         },
         card: {
-          DEFAULT: "#333333",
+          DEFAULT: "#2F2F2F",
           foreground: "#E0E0E0",
         },
       },
@@ -75,6 +75,14 @@ export default {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        slideIn: {
+          "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -82,6 +90,8 @@ export default {
         glow: "glow 2s ease-in-out infinite",
         pulse: "pulse 2s ease-in-out infinite",
         wiggle: "wiggle 1s ease-in-out infinite",
+        slideIn: "slideIn 0.3s ease-out",
+        fadeIn: "fadeIn 0.3s ease-out",
       },
     },
   },
