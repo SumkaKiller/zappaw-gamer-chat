@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 240 30% 99%;
-    --foreground: 222 24% 14%;
-    --card: 240 30% 99%;
-    --card-foreground: 222 24% 14%;
-    --popover: 240 30% 99%;
-    --popover-foreground: 222 24% 14%;
-    --primary: 251 100% 97%;
-    --primary-foreground: 222 24% 14%;
-    --secondary: 213 90% 97%;
-    --secondary-foreground: 222 24% 14%;
-    --muted: 97 90% 97%;
-    --muted-foreground: 222 24% 14%;
-    --accent: 24 90% 97%;
-    --accent-foreground: 222 24% 14%;
-    --destructive: 352 100% 97%;
-    --destructive-foreground: 222 24% 14%;
-    --border: 251 100% 97%;
-    --input: 240 30% 99%;
-    --ring: 251 100% 97%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 20%;
+    --card: 0 0% 95%;
+    --card-foreground: 0 0% 20%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 20%;
+    --primary: 0 0% 91%;
+    --primary-foreground: 0 0% 20%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 85%;
+    --accent-foreground: 0 0% 20%;
+    --destructive: 0 100% 97%;
+    --destructive-foreground: 0 0% 20%;
+    --border: 0 0% 89%;
+    --input: 0 0% 98%;
+    --ring: 0 0% 85%;
     --radius: 0.5rem;
   }
 }
@@ -56,7 +56,7 @@
   }
 
   .hover-glow {
-    @apply transition-all duration-200 hover:brightness-110;
+    @apply transition-all duration-200 hover:brightness-105;
   }
 
   .hover-slide {
